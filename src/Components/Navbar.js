@@ -1,23 +1,17 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
-export default class NavBar extends Component {
-  static propTypes = {
-    prop: PropTypes,
-  };
+const NavBar=()=>  {
+ 
 
-  state = {
-    flag : true
-  }
+  const[flag,setFlag] = useState(false)   
 
-  handleFlagState = () => {
-    return this.setState({
-      flag : this.state.flag ? false :  true
-    })
+  const handleFlagState = () => {
+    return (!flag?setFlag(true):setFlag(false))
   } 
 
-  render() {
+  
     return (
       <>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -33,14 +27,14 @@ export default class NavBar extends Component {
               aria-controls="navbarSupportedContent"
               aria-expanded="false"
               aria-label="Toggle navigation"
-              onClick={this.handleFlagState}
+              onClick={handleFlagState}
             >
               <span className="navbar-toggler-icon"></span>
             </button>
             <div
               className="collapse navbar-collapse"
               id="navbarSupportedContent"
-              style={{display : this.state.flag ? 'block': 'none'}}
+              style={{display : flag ? 'block': 'none'}}
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
@@ -94,4 +88,5 @@ export default class NavBar extends Component {
       </>
     );
   }
-}
+
+export default NavBar
